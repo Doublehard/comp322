@@ -144,20 +144,20 @@ void multiplyMatrices(int matrix_left[rows][cols], int matrix_right[rows][cols],
     multiplyMatrices(matrix_left,matrix_right,matrix_result);
 }
 
-int main(){
-    checkPassword();
-    convertPhonetic();
-    int matrix[rows][cols];
-    int matrix2[rows][cols];
-    int matrix_result[rows][cols] = {0};
-    fillMatrix(matrix);
-    fillMatrix(matrix2);
-    cout << "Matrix 1" << endl;
-    printMatrix(matrix);
-    cout << "Matrix 2" << endl;
-    printMatrix(matrix2);
-    multiplyMatrices(matrix, matrix2, matrix_result);
-    cout << "Matrix result" << endl;
-    printMatrix(matrix_result);
-    return 0;
-}
+//int main(){
+//    checkPassword();
+//    convertPhonetic();
+//    int matrix[rows][cols];
+//    int matrix2[rows][cols];
+//    int matrix_result[rows][cols] = {0};
+//    fillMatrix(matrix);
+//    fillMatrix(matrix2);
+//    cout << "Matrix 1" << endl;
+//    printMatrix(matrix);
+//    cout << "Matrix 2" << endl;
+//    printMatrix(matrix2);
+//    multiplyMatrices(matrix, matrix2, matrix_result);
+//    cout << "Matrix result" << endl;
+//    printMatrix(matrix_result);
+//    return 0;
+//}

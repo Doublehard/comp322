@@ -24,7 +24,7 @@ public:
 
 class DLLstrcture{
 public:
-    DLLstrcture():head(NULL),tail(NULL),size(0){}
+    DLLstrcture():head(NULL),tail(NULL),size(0),max(0),min(0){}
     ~DLLstrcture(){
         int counter = 0;
         while(head!=NULL){
@@ -37,9 +37,13 @@ public:
     }
     DLLstrcture(int array[], int size){
         cout << "constructor for Double Linked List is called" << endl;
+        max = min = array[0];
+        head = tail = NULL;
         for(int i=0;i<size;i++){
+            updateMaxMin(array[i]);
             addNodeToTail(array[i]);
         }
+        this->size = size;
     }
     void insertAfter(int valueToInsertAfter, int valueToBeInsert);
     void insertBefore(int valueToInsertBefore, int valueToBeInsert);
@@ -48,11 +52,22 @@ public:
     void printDLL();
     void Delete(int value);
     void Sort();
-//    bool IsEmpty();
+    bool IsEmpty();
+    int GetHead();
+    int GetTail();
+    int GetSize();
+    int GetMax();
+    int GetMin();
+
 private:
+    void updateMaxMin(int n);
+    void reFindMax();
+    void reFindMin();
     Node* head;
     Node* tail;
     int size;
+    int max;
+    int min;
 };
 void DLLstrcture::insertAfter(int valueToInsertAfter, int valueToBeInsert) {
     Node* temp = head;
@@ -67,6 +82,8 @@ void DLLstrcture::insertAfter(int valueToInsertAfter, int valueToBeInsert) {
 //        cout << "add to tail~~" << endl;
         addNodeToTail(valueToBeInsert);
     }
+    size++;
+    updateMaxMin(valueToBeInsert);
 }
 
 void DLLstrcture::insertBefore(int valueToInsertBefore, int valueToBeInsert) {
@@ -82,18 +99,23 @@ void DLLstrcture::insertBefore(int valueToInsertBefore, int valueToBeInsert) {
 //        cout << "add to head~~" << endl;
         addNodeToHead(valueToBeInsert);
     }
+    size++;
+    updateMaxMin(valueToBeInsert);
 }
 
 void DLLstrcture::addNodeToTail(int n){
     Node* node = new Node();
     node->data = n;
-    if(tail){
+    if(tail!=NULL){
+        cout << tail->data<<endl;
         node->prev = tail;
         tail->next = node;
         tail = node;
     }else{
         head = tail = node;
     }
+    size++;
+    updateMaxMin(n);
 }
 void DLLstrcture::addNodeToHead(int n) {
     Node* node = new Node();
@@ -105,6 +127,8 @@ void DLLstrcture::addNodeToHead(int n) {
     }else{
         head = tail = node;
     }
+    size++;
+    updateMaxMin(n);
 }
 
 void DLLstrcture::printDLL() {
@@ -129,8 +153,19 @@ void DLLstrcture::Delete(int value) {
         temp_prev->next = temp_next;
         temp_next->prev = temp_prev;
         delete temp;
+        // update max min
+        if(max==value){
+            reFindMax();
+        }
+        if(min==value){
+            reFindMin();
+        }
+
+
+        size--;
     }
     // else do nothing
+
 }
 
 void DLLstrcture::Sort() {
@@ -151,9 +186,71 @@ void DLLstrcture::Sort() {
 }
 
 
-//bool DLLstrcture::IsEmpty() {
-//    if(head)
-//}
+bool DLLstrcture::IsEmpty() {
+    if(size==0){
+        cout << "LL is empty" << endl;
+        return true;
+    }
+    cout << "LL is not empty" << endl;
+    return false;
+}
+
+int DLLstrcture::GetHead() {
+    if(size!=0){
+        return head->data;
+    }
+    return 0;
+}
+
+int DLLstrcture::GetTail() {
+    if(size!=0){
+        return tail->data;
+    }
+    return 0;
+}
+
+int DLLstrcture::GetSize() {
+    return size;
+}
+
+void DLLstrcture::updateMaxMin(int n) {
+    if(n>max){
+        max = n;
+    }
+    if(n<min){
+        min = n;
+    }
+}
+
+int DLLstrcture::GetMax() {
+    return max;
+}
+
+int DLLstrcture::GetMin() {
+    return min;
+}
+
+void DLLstrcture::reFindMax() {
+    max = min;
+    Node* ptr = head;
+    while(ptr!=NULL){
+        if(ptr->data>max){
+            max = ptr->data;
+        }
+        ptr = ptr->next;
+    }
+}
+
+void DLLstrcture::reFindMin() {
+    min = max;
+    Node* ptr = head;
+    while(ptr!=NULL){
+        if(ptr->data < min){
+            min = ptr->data;
+        }
+        ptr = ptr->next;
+    }
+}
 
 int main(){
 
@@ -174,6 +271,13 @@ int main(){
 //    myLL.printDLL();
     myLL.Sort();
     myLL.printDLL();
+
+    cout << "Head = "<<myLL.GetHead()<<"; Tail = "<<myLL.GetTail()<<endl;
+    cout << "LL has size = "<<myLL.GetSize()<<endl;
+    cout << "Max value = "<<myLL.GetMax()<<"; Min value = "<<myLL.GetMin()<<endl;
+
+
+
     return 0;
 }
 

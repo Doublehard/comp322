@@ -22,10 +22,10 @@ public:
     Node* prev;
 };
 
-class DLLstrcture{
+class DLLStructure{
 public:
-    DLLstrcture():head(nullptr),tail(nullptr),size(0),max(0),min(0){}
-    ~DLLstrcture(){
+    DLLStructure(): head(nullptr), tail(nullptr), size(0), max(0), min(0){}
+    ~DLLStructure(){
         int counter = 0;
         while(head!= nullptr){
             Node* temp = head->next;
@@ -35,7 +35,7 @@ public:
         }
         cout << "destructor called for deleting " << counter << " nodes." << endl;
     }
-    DLLstrcture(int array[], int size){
+    DLLStructure(int array[], int size){
         cout << "constructor for Double Linked List is called" << endl;
         max = min = array[0];
         head = tail = NULL;
@@ -45,20 +45,20 @@ public:
         }
         this->size = size;
     }
-    void insertAfter(int valueToInsertAfter, int valueToBeInsert);
-    void insertBefore(int valueToInsertBefore, int valueToBeInsert);
+    void InsertAfter(int valueToInsertAfter, int valueToBeInsert);
+    void InsertBefore(int valueToInsertBefore, int valueToBeInsert);
     void addNodeToHead(int n);
     void addNodeToTail(int n);
     void printDLL();
     void Delete(int value);
     void Sort();
     bool IsEmpty();
-    int GetHead();
-    int GetTail();
-    int GetSize();
-    int GetMax();
-    int GetMin();
-    DLLstrcture(DLLstrcture& list);
+    int getHead();
+    int getTail();
+    int getSize();
+    int getMax();
+    int getMin();
+    DLLStructure(DLLStructure& list);
 
 private:
     void updateMaxMin(int n);
@@ -70,7 +70,7 @@ private:
     int max;
     int min;
 };
-void DLLstrcture::insertAfter(int valueToInsertAfter, int valueToBeInsert) {
+void DLLStructure::InsertAfter(int valueToInsertAfter, int valueToBeInsert) {
     Node* temp = head;
     while(temp->data!=valueToInsertAfter && temp!=tail){
         temp = temp->next;
@@ -87,14 +87,20 @@ void DLLstrcture::insertAfter(int valueToInsertAfter, int valueToBeInsert) {
     updateMaxMin(valueToBeInsert);
 }
 
-void DLLstrcture::insertBefore(int valueToInsertBefore, int valueToBeInsert) {
-    Node* temp = tail;
+void DLLStructure::InsertBefore(int valueToInsertBefore, int valueToBeInsert) {
+//    Node* temp = tail;
+    Node* temp = head;
 //    cout << "temp data = " << temp->data << endl;
-    while(temp->data!=valueToInsertBefore && temp!=head){
-        temp = temp->prev;
+//    while(temp->data!=valueToInsertBefore && temp!=head){
+//        temp = temp->prev;
+//    }
+
+    while(temp->data!=valueToInsertBefore && temp!=tail){
+        temp = temp->next;
     }
+
     if(temp->data==valueToInsertBefore){
-        insertAfter(temp->prev->data,valueToBeInsert);
+        InsertAfter(temp->prev->data, valueToBeInsert);
     }else{
 //        insert at head
 //        cout << "add to head~~" << endl;
@@ -104,7 +110,7 @@ void DLLstrcture::insertBefore(int valueToInsertBefore, int valueToBeInsert) {
     updateMaxMin(valueToBeInsert);
 }
 
-void DLLstrcture::addNodeToTail(int n){
+void DLLStructure::addNodeToTail(int n){
     Node* node = new Node();
     node->data = n;
     if(tail!=NULL){
@@ -118,7 +124,7 @@ void DLLstrcture::addNodeToTail(int n){
     size++;
     updateMaxMin(n);
 }
-void DLLstrcture::addNodeToHead(int n) {
+void DLLStructure::addNodeToHead(int n) {
     Node* node = new Node();
     node->data = n;
     if(head){
@@ -132,7 +138,7 @@ void DLLstrcture::addNodeToHead(int n) {
     updateMaxMin(n);
 }
 
-void DLLstrcture::printDLL() {
+void DLLStructure::printDLL() {
     Node* temp = head;
 //    cout << "printing linked list:" << endl;
     while (temp!=NULL){
@@ -142,7 +148,7 @@ void DLLstrcture::printDLL() {
     cout << endl;
 }
 
-void DLLstrcture::Delete(int value) {
+void DLLStructure::Delete(int value) {
     Node* temp = head;
     while (temp->data!=value && temp!=tail){
         temp = temp->next;
@@ -167,7 +173,7 @@ void DLLstrcture::Delete(int value) {
 
 }
 
-void DLLstrcture::Sort() {
+void DLLStructure::Sort() {
     // insertion sort O(n^2)
     Node* cur = head->next;
     while(cur!=NULL){
@@ -185,7 +191,7 @@ void DLLstrcture::Sort() {
 }
 
 
-bool DLLstrcture::IsEmpty() {
+bool DLLStructure::IsEmpty() {
     if(size==0){
         cout << "LL is empty" << endl;
         return true;
@@ -194,25 +200,25 @@ bool DLLstrcture::IsEmpty() {
     return false;
 }
 
-int DLLstrcture::GetHead() {
+int DLLStructure::getHead() {
     if(size!=0){
         return head->data;
     }
     return 0;
 }
 
-int DLLstrcture::GetTail() {
+int DLLStructure::getTail() {
     if(size!=0){
         return tail->data;
     }
     return 0;
 }
 
-int DLLstrcture::GetSize() {
+int DLLStructure::getSize() {
     return size;
 }
 
-void DLLstrcture::updateMaxMin(int n) {
+void DLLStructure::updateMaxMin(int n) {
     if(n>max){
         max = n;
     }
@@ -221,15 +227,15 @@ void DLLstrcture::updateMaxMin(int n) {
     }
 }
 
-int DLLstrcture::GetMax() {
+int DLLStructure::getMax() {
     return max;
 }
 
-int DLLstrcture::GetMin() {
+int DLLStructure::getMin() {
     return min;
 }
 
-void DLLstrcture::reFindMax() {
+void DLLStructure::reFindMax() {
     max = min;
     Node* ptr = head;
     while(ptr!=NULL){
@@ -240,7 +246,7 @@ void DLLstrcture::reFindMax() {
     }
 }
 
-void DLLstrcture::reFindMin() {
+void DLLStructure::reFindMin() {
     min = max;
     Node* ptr = head;
     while(ptr!=NULL){
@@ -253,7 +259,7 @@ void DLLstrcture::reFindMin() {
 
 // algo from:
 // https://github.com/CyC2018/CS-Notes/blob/master/notes/35.%20%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6.md
-DLLstrcture::DLLstrcture(DLLstrcture &list) {
+DLLStructure::DLLStructure(DLLStructure &list) {
     // add clone node after each node
     Node* ptr = list.head;
     while(ptr!= nullptr){
@@ -312,43 +318,90 @@ DLLstrcture::DLLstrcture(DLLstrcture &list) {
 
 int main(){
 
-    int array[] = {6,5,3,1,9,10,100,0,-1};
-    DLLstrcture myLL(array,9);
+//    int array[] = {6,5,3,1,9,10,100,0,-1};
+//    DLLStructure myLL(array,9);
+////    myLL.printDLL();
+////    myLL.InsertAfter(3,0);
+////    myLL.printDLL();
+////    myLL.InsertAfter(6,100);
+////    myLL.printDLL();
+////    myLL.InsertAfter(6,6);
+////    myLL.printDLL();
+////    myLL.InsertBefore(100,6);
+////    myLL.printDLL();
+////    myLL.InsertBefore(8,-1);
 //    myLL.printDLL();
-//    myLL.insertAfter(3,0);
+////    myLL.Delete(0);
+////    myLL.printDLL();
+//
+////    myLL.Sort();
+////    myLL.printDLL();
+//
+////    cout << "Head = "<<myLL.getHead()<<"; Tail = "<<myLL.getTail()<<endl;
+////    cout << "LL has size = "<<myLL.getSize()<<endl;
+////    cout << "Max value = "<<myLL.getMax()<<"; Min value = "<<myLL.getMin()<<endl;
+//
+//
+//    cout << "Default copy constructor only does shallow copy."
+//         << "Since the object DLLstructure has pointers, I need to write a user-defined copy constructor."
+//         << endl;
+//    DLLStructure myLL_copy(myLL); // copy constructor called
+////
+////    myLL.Sort();
 //    myLL.printDLL();
-//    myLL.insertAfter(6,100);
+////
+//    myLL_copy.Sort();
+//    myLL_copy.printDLL();
+//
 //    myLL.printDLL();
-//    myLL.insertAfter(6,6);
-//    myLL.printDLL();
-//    myLL.insertBefore(100,6);
-//    myLL.printDLL();
-//    myLL.insertBefore(8,-1);
-    myLL.printDLL();
-//    myLL.Delete(0);
-//    myLL.printDLL();
+//
+////
 
-//    myLL.Sort();
-//    myLL.printDLL();
+    // Q 1, 2, 3 should obviously be implemented successfully
+// in order to run the following code
+    int array[5] = {11, 2, 7, 22, 4};
+    DLLStructure dll(array, 5); // note that 5 is the size of the array
+    dll.printDLL(); // the output should be: 11, 2, 7, 22, 4
+// Q 4
+    dll.InsertAfter(7, 13); // To insert 13 after the first occurence of 7
+    dll.printDLL(); // the output should be: 11, 2, 7, 13, 22, 4
+    dll.InsertAfter(25, 7); // To insert 7 after the first occurence of 25
+    dll.printDLL(); // the output should be: 11, 2, 7, 13, 22, 4, 7
+// Q 5
+    dll.InsertBefore(7, 26); // To insert 26 before the first occurence of 7
+    dll.printDLL(); // the output should be: 11, 2, 26, 7, 13, 22, 4, 7
+    dll.InsertBefore(19, 12); // To insert 12 before the first occurence of 19
+    dll.printDLL(); // the output should be: 12, 11, 2, 26, 7, 13, 22, 4, 7
+// Q 6
+    dll.Delete(22);
+    dll.printDLL(); // the output should be: 12, 11, 2, 26, 7, 13, 4, 7
+// Q 7
+    dll.Sort();
+    dll.printDLL(); // the output should be: 2, 4, 7, 7, 11, 12, 13, 26
+// Q 8
+    if (dll.IsEmpty()){
+        cout << "The list is empty" << endl;
+    }
+// Q 9
+    cout << "Head element is: " << dll.getHead() << endl;
+    cout << "Tail element is: " << dll.getTail() << endl;
+// Q 10
+    cout << "Number of elements in the list is: " << dll.getSize() <<
+         endl;
+// Q 11
+    cout << "Max element is: " << dll.getMax() << endl;
+    cout << "Min element is: " << dll.getMin() << endl;
 
-//    cout << "Head = "<<myLL.GetHead()<<"; Tail = "<<myLL.GetTail()<<endl;
-//    cout << "LL has size = "<<myLL.GetSize()<<endl;
-//    cout << "Max value = "<<myLL.GetMax()<<"; Min value = "<<myLL.GetMin()<<endl;
-
-
+// Q 11 theory question
+// print to the screen the written answer for the theory question
     cout << "Default copy constructor only does shallow copy."
          << "Since the object DLLstructure has pointers, I need to write a user-defined copy constructor."
          << endl;
-    DLLstrcture myLL_copy(myLL); // copy constructor called
-//
-//    myLL.Sort();
-    myLL.printDLL();
-//
-    myLL_copy.Sort();
-    myLL_copy.printDLL();
-
-    myLL.printDLL();
-
+// Q 12 theory question
+// print to the screen the written answer for the theory question
+// Q 12
+    DLLStructure dll2 (dll);
+    dll2.printDLL(); // the output should be: 2, 4, 7, 7, 11, 12, 13, 26
     return 0;
 }
 

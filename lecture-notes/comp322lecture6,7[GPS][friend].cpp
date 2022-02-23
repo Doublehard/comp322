@@ -14,11 +14,17 @@ public:
     ~GPS(){
         cout<<"GPS destructor called"<<endl;
     }
+    friend void setLongitude(GPS& gps);
 private:
     double altitude;
     double longitude;
     double latitude;
 };
+
+void setLongitude(GPS &gps) {
+    // friend can access gps private and protected members
+    gps.latitude = 42;
+}
 
 //int main(){
 //    cout << "Program started ... " << endl;

@@ -316,92 +316,92 @@ DLLStructure::DLLStructure(DLLStructure &list) {
 }
 
 
-int main(){
-
-//    int array[] = {6,5,3,1,9,10,100,0,-1};
-//    DLLStructure myLL(array,9);
-////    myLL.printDLL();
-////    myLL.InsertAfter(3,0);
-////    myLL.printDLL();
-////    myLL.InsertAfter(6,100);
-////    myLL.printDLL();
-////    myLL.InsertAfter(6,6);
-////    myLL.printDLL();
-////    myLL.InsertBefore(100,6);
-////    myLL.printDLL();
-////    myLL.InsertBefore(8,-1);
-//    myLL.printDLL();
-////    myLL.Delete(0);
-////    myLL.printDLL();
+//int main(){
 //
-////    myLL.Sort();
+////    int array[] = {6,5,3,1,9,10,100,0,-1};
+////    DLLStructure myLL(array,9);
+//////    myLL.printDLL();
+//////    myLL.InsertAfter(3,0);
+//////    myLL.printDLL();
+//////    myLL.InsertAfter(6,100);
+//////    myLL.printDLL();
+//////    myLL.InsertAfter(6,6);
+//////    myLL.printDLL();
+//////    myLL.InsertBefore(100,6);
+//////    myLL.printDLL();
+//////    myLL.InsertBefore(8,-1);
 ////    myLL.printDLL();
+//////    myLL.Delete(0);
+//////    myLL.printDLL();
+////
+//////    myLL.Sort();
+//////    myLL.printDLL();
+////
+//////    cout << "Head = "<<myLL.getHead()<<"; Tail = "<<myLL.getTail()<<endl;
+//////    cout << "LL has size = "<<myLL.getSize()<<endl;
+//////    cout << "Max value = "<<myLL.getMax()<<"; Min value = "<<myLL.getMin()<<endl;
+////
+////
+////    cout << "Default copy constructor only does shallow copy."
+////         << "Since the object DLLstructure has pointers, I need to write a user-defined copy constructor."
+////         << endl;
+////    DLLStructure myLL_copy(myLL); // copy constructor called
+//////
+//////    myLL.Sort();
+////    myLL.printDLL();
+//////
+////    myLL_copy.Sort();
+////    myLL_copy.printDLL();
+////
+////    myLL.printDLL();
+////
+//////
 //
-////    cout << "Head = "<<myLL.getHead()<<"; Tail = "<<myLL.getTail()<<endl;
-////    cout << "LL has size = "<<myLL.getSize()<<endl;
-////    cout << "Max value = "<<myLL.getMax()<<"; Min value = "<<myLL.getMin()<<endl;
+//    // Q 1, 2, 3 should obviously be implemented successfully
+//// in order to run the following code
+//    int array[5] = {11, 2, 7, 22, 4};
+//    DLLStructure dll(array, 5); // note that 5 is the size of the array
+//    dll.printDLL(); // the output should be: 11, 2, 7, 22, 4
+//// Q 4
+//    dll.InsertAfter(7, 13); // To insert 13 after the first occurence of 7
+//    dll.printDLL(); // the output should be: 11, 2, 7, 13, 22, 4
+//    dll.InsertAfter(25, 7); // To insert 7 after the first occurence of 25
+//    dll.printDLL(); // the output should be: 11, 2, 7, 13, 22, 4, 7
+//// Q 5
+//    dll.InsertBefore(7, 26); // To insert 26 before the first occurence of 7
+//    dll.printDLL(); // the output should be: 11, 2, 26, 7, 13, 22, 4, 7
+//    dll.InsertBefore(19, 12); // To insert 12 before the first occurence of 19
+//    dll.printDLL(); // the output should be: 12, 11, 2, 26, 7, 13, 22, 4, 7
+//// Q 6
+//    dll.Delete(22);
+//    dll.printDLL(); // the output should be: 12, 11, 2, 26, 7, 13, 4, 7
+//// Q 7
+//    dll.Sort();
+//    dll.printDLL(); // the output should be: 2, 4, 7, 7, 11, 12, 13, 26
+//// Q 8
+//    if (dll.IsEmpty()){
+//        cout << "The list is empty" << endl;
+//    }
+//// Q 9
+//    cout << "Head element is: " << dll.getHead() << endl;
+//    cout << "Tail element is: " << dll.getTail() << endl;
+//// Q 10
+//    cout << "Number of elements in the list is: " << dll.getSize() <<
+//         endl;
+//// Q 11
+//    cout << "Max element is: " << dll.getMax() << endl;
+//    cout << "Min element is: " << dll.getMin() << endl;
 //
-//
+//// Q 11 theory question
+//// print to the screen the written answer for the theory question
 //    cout << "Default copy constructor only does shallow copy."
 //         << "Since the object DLLstructure has pointers, I need to write a user-defined copy constructor."
 //         << endl;
-//    DLLStructure myLL_copy(myLL); // copy constructor called
-////
-////    myLL.Sort();
-//    myLL.printDLL();
-////
-//    myLL_copy.Sort();
-//    myLL_copy.printDLL();
-//
-//    myLL.printDLL();
-//
-////
-
-    // Q 1, 2, 3 should obviously be implemented successfully
-// in order to run the following code
-    int array[5] = {11, 2, 7, 22, 4};
-    DLLStructure dll(array, 5); // note that 5 is the size of the array
-    dll.printDLL(); // the output should be: 11, 2, 7, 22, 4
-// Q 4
-    dll.InsertAfter(7, 13); // To insert 13 after the first occurence of 7
-    dll.printDLL(); // the output should be: 11, 2, 7, 13, 22, 4
-    dll.InsertAfter(25, 7); // To insert 7 after the first occurence of 25
-    dll.printDLL(); // the output should be: 11, 2, 7, 13, 22, 4, 7
-// Q 5
-    dll.InsertBefore(7, 26); // To insert 26 before the first occurence of 7
-    dll.printDLL(); // the output should be: 11, 2, 26, 7, 13, 22, 4, 7
-    dll.InsertBefore(19, 12); // To insert 12 before the first occurence of 19
-    dll.printDLL(); // the output should be: 12, 11, 2, 26, 7, 13, 22, 4, 7
-// Q 6
-    dll.Delete(22);
-    dll.printDLL(); // the output should be: 12, 11, 2, 26, 7, 13, 4, 7
-// Q 7
-    dll.Sort();
-    dll.printDLL(); // the output should be: 2, 4, 7, 7, 11, 12, 13, 26
-// Q 8
-    if (dll.IsEmpty()){
-        cout << "The list is empty" << endl;
-    }
-// Q 9
-    cout << "Head element is: " << dll.getHead() << endl;
-    cout << "Tail element is: " << dll.getTail() << endl;
-// Q 10
-    cout << "Number of elements in the list is: " << dll.getSize() <<
-         endl;
-// Q 11
-    cout << "Max element is: " << dll.getMax() << endl;
-    cout << "Min element is: " << dll.getMin() << endl;
-
-// Q 11 theory question
-// print to the screen the written answer for the theory question
-    cout << "Default copy constructor only does shallow copy."
-         << "Since the object DLLstructure has pointers, I need to write a user-defined copy constructor."
-         << endl;
-// Q 12 theory question
-// print to the screen the written answer for the theory question
-// Q 12
-    DLLStructure dll2 (dll);
-    dll2.printDLL(); // the output should be: 2, 4, 7, 7, 11, 12, 13, 26
-    return 0;
-}
+//// Q 12 theory question
+//// print to the screen the written answer for the theory question
+//// Q 12
+//    DLLStructure dll2 (dll);
+//    dll2.printDLL(); // the output should be: 2, 4, 7, 7, 11, 12, 13, 26
+//    return 0;
+//}
 

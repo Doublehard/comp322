@@ -7,7 +7,7 @@ using namespace std;
 
 class Node{
 public:
-    Node(): data(0), next(NULL), prev(NULL){}
+    Node(): data(0), next(nullptr), prev(nullptr){}
     ~Node(){}
     Node(int data, Node* next, Node* prev): data(data), next(next), prev(prev){
         if(next){
@@ -24,10 +24,10 @@ public:
 
 class DLLstrcture{
 public:
-    DLLstrcture():head(NULL),tail(NULL),size(0),max(0),min(0){}
+    DLLstrcture():head(nullptr),tail(nullptr),size(0),max(0),min(0){}
     ~DLLstrcture(){
         int counter = 0;
-        while(head!=NULL){
+        while(head!= nullptr){
             Node* temp = head->next;
             delete head;
             head = temp;
@@ -58,6 +58,7 @@ public:
     int GetSize();
     int GetMax();
     int GetMin();
+    DLLstrcture(DLLstrcture& list);
 
 private:
     void updateMaxMin(int n);
@@ -107,7 +108,7 @@ void DLLstrcture::addNodeToTail(int n){
     Node* node = new Node();
     node->data = n;
     if(tail!=NULL){
-        cout << tail->data<<endl;
+//        cout << tail->data<<endl;
         node->prev = tail;
         tail->next = node;
         tail = node;
@@ -160,8 +161,6 @@ void DLLstrcture::Delete(int value) {
         if(min==value){
             reFindMin();
         }
-
-
         size--;
     }
     // else do nothing
@@ -252,6 +251,65 @@ void DLLstrcture::reFindMin() {
     }
 }
 
+// algo from:
+// https://github.com/CyC2018/CS-Notes/blob/master/notes/35.%20%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6.md
+DLLstrcture::DLLstrcture(DLLstrcture &list) {
+    // add clone node after each node
+    Node* ptr = list.head;
+    while(ptr!= nullptr){
+        Node* clone =  new Node(ptr->data,ptr->next,ptr);
+        ptr->next = clone;
+        if(clone->next!= nullptr){
+            clone->next->prev = clone;
+        }
+        if(ptr!=list.tail){
+            ptr = ptr->next->next;
+        } else{
+            break;
+        }
+
+//        list.printDLL();
+    }
+
+    // seperate two list, copy attributes
+    ptr = list.head;
+    Node* ptr_clone = list.head->next;
+
+
+
+    while (ptr!= nullptr){
+        ptr->next = ptr->next->next;
+        if(ptr_clone->next!= nullptr){
+            ptr_clone->next=ptr_clone->next->next;
+        } else {
+            break;
+        }
+        ptr = ptr->next;
+        ptr_clone = ptr_clone->next;
+    }
+
+    tail = ptr_clone;
+
+    while(ptr_clone!= nullptr){
+        ptr_clone->prev = ptr_clone->prev->prev;
+        if(ptr!=list.head){
+            ptr->prev = ptr->prev->prev;
+        } else {
+            break;
+        }
+        ptr_clone = ptr_clone->prev;
+        ptr = ptr->prev;
+    }
+
+    head = ptr_clone;
+
+    size = list.size;
+    max = list.max;
+    min = list.min;
+
+}
+
+
 int main(){
 
     int array[] = {6,5,3,1,9,10,100,0,-1};
@@ -269,14 +327,27 @@ int main(){
     myLL.printDLL();
 //    myLL.Delete(0);
 //    myLL.printDLL();
-    myLL.Sort();
+
+//    myLL.Sort();
+//    myLL.printDLL();
+
+//    cout << "Head = "<<myLL.GetHead()<<"; Tail = "<<myLL.GetTail()<<endl;
+//    cout << "LL has size = "<<myLL.GetSize()<<endl;
+//    cout << "Max value = "<<myLL.GetMax()<<"; Min value = "<<myLL.GetMin()<<endl;
+
+
+    cout << "Default copy constructor only does shallow copy."
+         << "Since the object DLLstructure has pointers, I need to write a user-defined copy constructor."
+         << endl;
+    DLLstrcture myLL_copy(myLL); // copy constructor called
+//
+//    myLL.Sort();
     myLL.printDLL();
+//
+    myLL_copy.Sort();
+    myLL_copy.printDLL();
 
-    cout << "Head = "<<myLL.GetHead()<<"; Tail = "<<myLL.GetTail()<<endl;
-    cout << "LL has size = "<<myLL.GetSize()<<endl;
-    cout << "Max value = "<<myLL.GetMax()<<"; Min value = "<<myLL.GetMin()<<endl;
-
-
+    myLL.printDLL();
 
     return 0;
 }

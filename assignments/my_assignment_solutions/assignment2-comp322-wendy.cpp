@@ -77,13 +77,14 @@ void DLLStructure::InsertAfter(int valueToInsertAfter, int valueToBeInsert) {
     }
     if(temp->data == valueToInsertAfter){
         Node* new_node = new Node(valueToBeInsert,temp->next,temp);
-//        cout << "tail = " << tail->data << endl;
+        size++;
+        //        cout << "tail = " << tail->data << endl;
     } else{
         // not found, insert at the end
 //        cout << "add to tail~~" << endl;
         addNodeToTail(valueToBeInsert);
     }
-    size++;
+
     updateMaxMin(valueToBeInsert);
 }
 
@@ -106,7 +107,6 @@ void DLLStructure::InsertBefore(int valueToInsertBefore, int valueToBeInsert) {
 //        cout << "add to head~~" << endl;
         addNodeToHead(valueToBeInsert);
     }
-    size++;
     updateMaxMin(valueToBeInsert);
 }
 

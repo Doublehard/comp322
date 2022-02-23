@@ -58,24 +58,24 @@ public:
     void land(){cout << "Boeing is landing."<<endl;}
 };
 
-int main(){
-//    Aircraft a;
-//    a.setCapacity(50);
-//    a.fly();
+//int main(){
+////    Aircraft a;
+////    a.setCapacity(50);
+////    a.fly();
+////
+////    Boeing b;
+////    b.setCapacity(100);
+////    b.fly();
 //
-//    Boeing b;
-//    b.setCapacity(100);
-//    b.fly();
-
-
-//    Boeing c(300);
-//    c.fly();
-
-   Aircraft* af;
-   af = new Boeing(300);
-   af->fly();
-   delete af;
-
-
-    return 0;
-}
+//
+////    Boeing c(300);
+////    c.fly();
+//
+//   Aircraft* af;
+//   af = new Boeing(300);
+//   af->fly();
+//   delete af;
+//
+//
+//    return 0;
+//}

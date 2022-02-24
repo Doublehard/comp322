@@ -37,15 +37,15 @@ ostream &operator<<(ostream &os, const myVector &vec) {
 }
 
 
-int main(){
-    myVector v1(2,4,6);
-    myVector v2(3,5,7);
-    v1.display();
-    v2.display();
-
-    myVector v3 = v2+v1;
-    cout << v3;
-
-    return 0;
-};
+//int main(){
+//    myVector v1(2,4,6);
+//    myVector v2(3,5,7);
+//    v1.display();
+//    v2.display();
+//
+//    myVector v3 = v2+v1;
+//    cout << v3;
+//
+//    return 0;
+//};
 

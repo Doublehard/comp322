@@ -47,10 +47,10 @@ double getRatio(double  a, double  b){
 //    } catch (exception& e){
 //        cout << "Other catch:" << e.what() << endl;
 //    }
-
-
-
-
-    return 0;
-}
+//
+//
+//
+//
+//    return 0;
+//}
 

@@ -28,6 +28,7 @@ comp322
     ├── two videos in mp4
 ├── quiz/
     ├── quiz photos in jpg
+    ├── quiz codes in cpp
 ├── assignments/
     ├── 3 assignment descriptions in pdf
     ├── my_assignment_solutions/

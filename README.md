@@ -11,7 +11,6 @@ Computer Science (Sci) : Basics and advanced features of the C++ language. Synta
 
 **Prerequisite(s)**: COMP 250 and (COMP 206 or COMP 208)
 
----
 
 ## Disclaimer:
 
